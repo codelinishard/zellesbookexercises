@@ -1,0 +1,43 @@
+# 1a is just a replacement of "Circles" with "Rectangles"
+# 1b
+from graphics import*
+
+def 1b():
+        win = GraphWin()
+        shape = Rectangle(Point(50,50),Point(70,70))
+        shape.setOutline("red")
+        shape.setFill("red")
+        shape.setFill("red")
+        shape.draw(win)
+        for i in range(10):
+            p = win.getMouse()
+            c = shape.getCenter()
+            dx = p.getX() - c.getX()
+            dy = p.getY() - c.getY()
+            item = shape.clone()
+            item.move(dx,dy)
+            item.draw(win)
+        win.close()
+
+def 1c():
+        win = GraphWin()
+        shape = Rectangle(Point(50,50),Point(70,70))
+        shape.setOutline("red")
+        shape.setFill("red")
+        shape.setFill("red")
+        shape.draw(win)
+        for i in range(10):
+            p = win.getMouse()
+            c = shape.getCenter()
+            dx = p.getX() - c.getX()
+            dy = p.getY() - c.getY()
+            item = shape.clone()
+            item.move(dx,dy)
+            item.draw(win)
+        message = Text(Point(100,100), """No more square dots please,
+        click to end""")
+        message.draw(win)
+        win.getMouse()
+        win.close()
+main()
+
