@@ -1,0 +1,25 @@
+from graphics import*
+
+def archery():
+        #for easy central symmetry
+        win = GraphWin("Archery target")
+        win.setBackground ("brown")
+        win.setCoords(0.0,0.0,14,14)
+        #defining the circles to draw first
+        white = Circle(Point(7.0,7.0),5)
+        white.setFill("white")
+        black = Circle(Point(7.0,7.0),4)
+        black.setFill("black")
+        blue = Circle(Point(7.0,7.0),3)
+        blue.setFill("blue")
+        red = Circle(Point(7.0,7.0),2)
+        red.setFill("red")
+        yellow = Circle(Point(7.0,7.0),1)
+        yellow.setFill("yellow")
+        #actually drawing
+        white.draw(win)
+        black.draw(win)
+        blue.draw(win)
+        red.draw(win)
+        yellow.draw(win)
+archery()
