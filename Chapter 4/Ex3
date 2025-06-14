@@ -1,0 +1,32 @@
+from graphics import*
+
+def face():
+        #for easy central symmetry
+        win = GraphWin("a face")
+        win.setBackground ("green")
+        win.setCoords(0.0,0.0,14,14)
+        #defining the circles to draw first
+        face = Circle(Point(7.0,7.0),5)
+        face.setFill("white")
+        face.setOutline("black")
+        Leyes = Circle(Point(3.0,9.0),1)
+        Leyes.setOutline("black")
+        Lpup = Circle(Point(3.0,9.0),0.5)
+        Lpup.setFill("black")
+        Rpup = Lpup.clone()
+        reyes = Leyes.clone()
+        reyes.move(8,0)
+        Rpup.move(8,0)
+        Nose = Polygon(Point (7,5),Point(7,8),Point(8,6))
+        Mouth = Oval(Point(4,5),Point(9,5))
+        
+        #actually drawing
+        face.draw(win)
+        Leyes.draw(win)
+        reyes.draw(win)
+        Rpup.draw(win)
+        Lpup.draw(win)
+        Nose.draw(win)
+        Mouth.draw(win)
+        win.getMouse()
+face()
