@@ -1,0 +1,55 @@
+from graphics import*
+
+def christmas():
+        #for easy central symmetry
+        win = GraphWin("christmas",600,600)
+        win.setBackground("grey")
+        win.setCoords(0.0,0.0,50,50)
+        #drawing the ground
+        ground = Rectangle(Point(0,0),Point(50,10))
+        ground.setFill("white")
+        ground.setOutline("black")
+        ground.draw(win)
+        #tree
+        trunk = Rectangle(Point(10,10),Point(20,20))
+        trunk.setFill("brown")
+        trunk.setOutline("black")
+        trunk.draw(win)
+        #leaves
+        leaves = Polygon(Point(5,20),Point(25,20),Point(15,45))
+        leaves.setFill("green")
+        leaves.setOutline("black")
+        leaves.draw(win)
+
+        sno = Text(Point(25,25),"Want to see a snowman? click to agree.")
+        sno.draw(win)
+        win.getMouse()
+        #now to snowman
+        body = Circle(Point(30,15),5)
+        body.setOutline("black")
+        body.setFill("white")
+        body.draw(win)
+        head = Circle(Point(30,23),3)
+        head.setOutline("black")
+        head.setFill("white")
+        head.draw(win)
+        Leye= Point(29,25)
+        Reye= Point(31,25)
+        Nose = Polygon(Point(30,24),Point(29,23),Point(30,22),Point(31,23))
+        Nose.setFill("orange")
+        Mouth = Oval(Point(28,20.5),Point(32,22))
+        Mouth.setOutline("black")
+        Mouth.setFill("grey")
+        CoverMouthTop= Rectangle(Point(28,21),Point(32,22))
+        CoverMouthTop.setOutline("white")
+        CoverMouthTop.setFill("white")
+        Mouth.setFill("white")
+        Mouth.draw(win)
+        CoverMouthTop.draw(win)
+        Leye.draw(win)
+        Reye.draw(win)
+        Nose.draw(win)
+        sno.setText("")
+        
+
+christmas()     
