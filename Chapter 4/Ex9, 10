@@ -1,0 +1,41 @@
+# Ex9 and 10 are basically the same script, just add the third coordinate and change the area formula
+from graphics import *
+
+def main():
+    
+    # Create a graphics window
+    win = GraphWin("Rectangle information", 600,600)
+    win.setBackground("white")
+    win.setCoords(-10,-10,10,10)
+    Instructions = Text(Point(0,8),"""Make two mouse clicks for
+    the opposite ends of a rectangle""")
+    Instructions.draw(win)
+    
+    p1= win.getMouse()
+    p2= win.getMouse()
+    p1x= float(p1.getX())
+    p1y= float(p1.getY())
+    p2x= float(p2.getX())
+    p2y= float(p2.getY())
+    Rectangl = Rectangle(Point(p1x,p1y),Point(p2x,p2y))
+    Rectangl.draw(win)
+    area = (p1y-p2y)*(p1x-p2x)
+    perimeter= abs(2*((p1y-p2y)+(p1x-p2x)))
+
+    areatxt = Text(Point(-5,-5),"area:")
+    perimetertxt = Text(Point(-5,-4),"perimeter:")
+    areaval=Text(Point(-0,-5),area)
+    perimeterval=Text(Point(-0,-4),perimeter)
+    areatxt.draw(win)
+    perimetertxt.draw(win)
+    areaval.draw(win)
+    perimeterval.draw(win)
+                 
+    
+    Close = Text(Point(0,-9),"Press <Enter> to quit.")
+    Close.setFill("green")
+    Close.draw(win)
+    win.getKey()
+    win.close()
+
+main()
