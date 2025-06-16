@@ -1,0 +1,79 @@
+from graphics import *
+
+def main():
+    
+    # Create a graphics window
+    win = GraphWin("housemaker", 600,600)
+    win.setBackground("white")
+    win.setCoords(-10,-10,10,10)
+    Instructions = Text(Point(0,8),"""Make two mouse clicks for
+    the opposite ends of a rectangle as house frame""")
+    Instructions.draw(win)
+
+    #drawing wall
+    p1= win.getMouse()
+    p2= win.getMouse()
+    x1= float(p1.getX())
+    y1= float(p1.getY())
+    x2= float(p2.getX())
+    y2= float(p2.getY())
+    Rectangl = Rectangle(Point(x1,y1),Point(x2,y2))
+    Rectangl.draw(win)
+
+    #drawing door
+    Instructions.setText("""make a third click to indicate center of top
+    edge of the door frame""")
+    housewidth = abs(x1-x2)
+    doorwidthhalf = housewidth/(5*2)
+    p3= win.getMouse()
+    x3= p3.getX()
+    y3= p3.getY()
+    doortopedge = Line(Point(x3-doorwidthhalf,y3),Point(x3+doorwidthhalf,y3))
+    if y2 > y1:
+        doorside1= Line(Point(x3-doorwidthhalf,y3),Point(x3-doorwidthhalf,y1))
+        doorside2= Line(Point(x3+doorwidthhalf,y3),Point(x3+doorwidthhalf,y1))        
+    else:
+        doorside1= Line(Point(x3-doorwidthhalf,y3),Point(x3-doorwidthhalf,y2))
+        doorside2= Line(Point(x3+doorwidthhalf,y3),Point(x3+doorwidthhalf,y2))
+    doortopedge.draw(win)
+    doorside1.draw(win)
+    doorside2.draw(win)
+
+    #window drawing
+    Instructions.setText("""make a fourth click to indicate
+    center of a window""")
+    p4= win.getMouse()
+    x4= p4.getX()
+    y4= p4.getY()
+    topleftwinX = x4- doorwidthhalf/2
+    topleftwinY = y4+ doorwidthhalf/2
+    botrightwinX = x4 + doorwidthhalf/2
+    botrightwinY = y4 - doorwidthhalf/2
+    window = Rectangle(Point(topleftwinX,topleftwinY),Point(botrightwinX,botrightwinY))
+    window.draw(win)
+
+    #the roof
+    Instructions.setText("""make a fifth click to draw peak of roof""")
+    p5 = win.getMouse()
+    x5 = p5.getX()
+    y5 = p5.getY()
+    if y1 > y2:
+        roofleft = Line(Point(x1,y1),Point(x5,y5))
+        roofright = Line(Point(x2,y1),Point(x5,y5))
+        #roofright uses the topright point of house
+    else:
+        roofleft = Line(Point(x2,y2),Point(x5,y5))
+        roofright = Line(Point(x1,y2),Point(x5,y5))
+    roofleft.draw(win)
+    roofright.draw(win)
+    
+
+    
+    
+    Close = Text(Point(0,-9),"Press <Enter> to quit.")
+    Close.setFill("green")
+    Close.draw(win)
+    win.getKey()
+    win.close()
+
+main()
