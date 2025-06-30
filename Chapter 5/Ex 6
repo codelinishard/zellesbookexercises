@@ -1,0 +1,11 @@
+def main():
+    print("This will sum the values of the letters of a name")
+    name = input("What is your name? ").lower()
+    name_sections = name.split()
+    total = 0
+    for sections in name_sections:
+        for l in sections:
+            value = int(ord(l)-96)
+            total += value
+    print("The total value of the letters in your name is: {}".format(total))
+main()
