@@ -1,0 +1,7 @@
+def main():
+    print("this function does wordcount")
+    sentence = input("input a sentence to count: ")
+    wordlist = sentence.split()
+    wordcount = len(wordlist)
+    print("your wordcount is {}".format(wordcount))
+main()
