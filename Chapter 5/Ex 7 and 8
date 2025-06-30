@@ -1,3 +1,4 @@
+# both 7 and 8 are answered with this
 def main():
     print("This program will help make caesar shifts")
     mode = input("Would you like to encrypt or decrypt? (e/d): ").strip().lower()
