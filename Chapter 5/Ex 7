@@ -1,0 +1,27 @@
+def main():
+    print("This program will help make caesar shifts")
+    mode = input("Would you like to encrypt or decrypt? (e/d): ").strip().lower()
+    shift = int(input("what is the key value?: "))
+    text= input("What do you want to decrypt/encrypt?: ").lower()
+    new_text = ""
+    if mode == "e":
+        for letter in text:
+            if ord(letter) == 32:
+                new_text += " "
+            elif ord(letter) + shift >122:
+                new_text += chr(ord(letter) + shift - 26)
+            else:
+                new_text += chr(ord(letter) + shift)
+        print("Your encrypted message is {}".format(new_text))
+    elif mode == "d":
+        for letter in text:
+            if ord(letter) == 32:
+                new_text += " "
+            elif ord(letter) - shift <97:
+                new_text += chr(ord(letter) - shift + 26)
+            else:
+                new_text += chr(ord(letter) - shift)
+        print("Your encrypted message is {}".format(new_text))
+    else:
+        print("input invalid")
+main()
