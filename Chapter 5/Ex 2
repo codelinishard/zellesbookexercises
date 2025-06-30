@@ -1,0 +1,6 @@
+def main():
+    result = int(input("input the score: "))
+    grades = ["F", "F", "D", "C", "B", "A"]
+    result_grade = grades[result]
+    print("your grade is {}".format(result_grade))
+main()
