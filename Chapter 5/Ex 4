@@ -1,0 +1,10 @@
+def main():
+    print("This makes acronyms.")
+    text_to_convert = input("Type in the phrase to acronymise with spaces: ")
+    text_list = text_to_convert.split()
+    acronym = ""
+    for texts in text_list:
+        acronym = acronym + texts[0].upper()
+    print("The acronym is {}".format(acronym))
+
+main()
