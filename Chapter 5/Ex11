@@ -1,0 +1,14 @@
+def main():
+    print("This program illustrates a chaotic function")
+    x = float(input("Enter a number between 0 and 1: "))
+    y = float(input("Enter 2nd number between 0 and 1: "))
+    z = int(input("How many iterations to do?: "))
+    print("index{:^14.6f}{:^15.6f}".format(x,y))
+    print("------------------------------------------------")
+    for i in range(z):
+        x = 3.9 * x * (1 - x)
+        y = 3.9 * y * (1 - y)
+
+        print("{:^5}{:^14.6f}{:^15.6f}".format(i+1,x,y))
+
+main()
