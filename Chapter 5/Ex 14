@@ -1,0 +1,25 @@
+
+
+from tkinter.filedialog import askopenfilename
+
+def main():
+    #open the file
+    print("Which file's word count to do? ")
+    infileName = askopenfilename()
+    infile = open(infileName,"r")
+    readfile = infile.read()
+    #count word count
+    wordlist = readfile.split()
+    wordcount = len(wordlist)
+    #count character count
+    linesplitter = readfile.split("\n")
+    characount = 0
+    linecount = 0
+    characount = len(readfile)
+    linecount = len(linesplitter)
+    print("your wordcount is {}.".format(wordcount))
+    print("your character count is {}.".format(characount))
+    print("your linecount is {}.".format(linecount))
+    infile.close()
+
+main()
