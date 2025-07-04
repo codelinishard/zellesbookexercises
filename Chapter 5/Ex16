@@ -1,0 +1,25 @@
+# forgot I could do a for loop for a moment and almost cried internally here
+from graphics import *
+from tkinter.filedialog import askopenfilename
+def main():
+        #setting up the window
+        print("Select the file to open: ")
+        infile = askopenfilename()
+        infile = open(infile, 'r')
+        win = GraphWin("quiz score",1000,1000)
+        win.setBackground("grey")
+        win.setCoords(0,0,17,17)
+        score = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        for line in infile:
+                score[int(line)] = score[int(line)]+1
+        for i in range(16):
+                number = Text(Point(i+1,1),i)
+                number.draw(win)
+                bar = Rectangle(Point(0.6+ i,1.5),Point(1.4 + i, score[i] +1.5))
+                bar.draw(win)
+                Close = Text(Point(8,16),"Press <Enter> to quit.")
+        Close.draw(win)
+        win.getKey()
+        win.close()
+
+main()
