@@ -1,0 +1,16 @@
+import math 
+def pizzaarea(diameter):
+    return math.pi * (diameter/2)**2
+def costpersqreinch(area,price):
+    return price/area
+def main():
+    print("This function will calculate the area and cost per square inch of pizza.")
+    print()
+    diameter, price = input("""What is the diameter and price of the pizza?" 
+input it as 'diameter,price': """).split(",")
+    diameter = float(diameter)
+    price = float(price)
+    area = pizzaarea(diameter)
+    print("The area of the pizza is {:.3g}, and cost per square inch is {:.2f}".format(area,costpersqreinch(area,price)))
+    
+main()
