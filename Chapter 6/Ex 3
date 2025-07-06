@@ -1,0 +1,12 @@
+import math 
+def sphereArea(radius):
+	return 4 * math.pi * radius ** 2
+def sphereVolume(radius):
+	return 4/3 * math.pi * radius ** 3
+def main():
+	print("This function will calculate volume and surface of a sphere")
+	radius = float(input("what is the radius of your sphere?: "))
+	print("""The volume of your sphere is {:.2f}
+and the surface area of your sphere is {:.2f}""".format(sphereVolume(radius),sphereArea(radius)))
+
+main()
