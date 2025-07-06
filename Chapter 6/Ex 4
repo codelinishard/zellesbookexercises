@@ -1,0 +1,16 @@
+def sum(n):
+    sum = 0
+    for i in range(1,n+1):
+        sum += i
+    return sum
+def sumNCubes(n):
+    sum = 0 
+    for i in range(1,n+1):
+        sum += i**3
+    return sum
+def main():
+    n = int(input("how many of the first natural numbers to add?: "))
+    print("""The sum of first {} natural numbers is {}.
+The sum of cubes of first {}} natural numbers is {}.""".format(n,sum(n),n,sumNCubes(n)))
+
+main()
