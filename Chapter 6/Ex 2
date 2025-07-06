@@ -1,0 +1,32 @@
+numbers = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+def antmarchcheer(row):
+    word = numbers[row-1]
+    print("The ants go marching {} by {}, hurrah! hurrah!".format(word,word))
+def antmarch(row):
+    word = numbers[row-1]
+    print("The ants go marching {} by {},".format(word,word))
+def anttohole():
+    print("""And they all go marching down...
+In the ground...
+To get out....
+Of the rain.
+Boom! Boom! Boom!""")
+def littleone(number):
+    action = [
+            "suck his thumb", "tie his shoe", "climb a tree", "eat ground flour", 
+              "make a pie", "learn some tricks", "visit heaven", 
+              "go on dates", "see the rhine", "find his pen"]
+    print("The little one stops to {},".format(action[number-1]))
+    
+def verse(number):
+    antmarchcheer(number)
+    antmarchcheer(number)
+    antmarch(number)
+    littleone(number)
+    anttohole()
+    print()
+def main():
+    for i in range(1,11):
+        verse(i)
+
+main()
