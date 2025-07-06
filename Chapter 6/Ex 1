@@ -1,0 +1,12 @@
+def lyrics(animal, noise):
+    print("Old MacDonald had a farm, Ee-igh, Ee-igh, Oh!")
+    print("And on that farm he had a {}, Ee-igh, Ee-igh, Oh!".format(animal))
+    print("With a {}, {} here and a {}, {} there.".format(noise,noise,noise,noise))
+    print("Here a {}, there a {}, everywhere a {}, {}.".format(noise,noise,noise,noise))
+    print("Old MacDonald had a farm, Ee-igh, Ee-igh, Oh!")
+    print()
+def oldmacdonald():
+    animals = [("cow", "moo"), ("sheep", "baa"), ("chicken", "cluck"), ("goat", "mehh"), ("duck", "quack")]
+    for farmanimal,sound in animals:
+      lyrics(farmanimal,sound)
+oldmacdonald()
