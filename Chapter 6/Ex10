@@ -1,0 +1,14 @@
+def acronym(phrase):
+    wordlist = phrase.split()
+    acronymised = ""
+    for word in wordlist:
+        acronymised += word[0].upper()
+    return acronymised
+def main():
+    print("This function makes acronyms")
+    phrase = str(input("What do you want acronymised?: "))
+    print()
+    print(f"The acronym of the phrase is {acronym(phrase)}")
+
+
+main()
