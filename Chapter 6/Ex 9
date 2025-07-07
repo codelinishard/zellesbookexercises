@@ -1,0 +1,19 @@
+def grade(score):
+    if score > 100 or score < 0:
+        return("invalid, try again")
+    elif score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C"
+    elif score >= 60:
+        return "D"
+    else: return "F"
+def main():
+    print("This function calculates the grade of a 100 point exam taken")
+    score = int(input("What is the score of the paper?: "))
+    print(f"The grade of the score is {grade(score)}")
+
+main()
+    
