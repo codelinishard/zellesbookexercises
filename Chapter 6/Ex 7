@@ -1,0 +1,31 @@
+#basically identical to chapter 3 question 16. Not sure what I was supposed to do differentlydef fibonacci(n):
+    # n is the nth fibonacci number
+    term1 = 1
+    term2 = 0
+    newterm = 0
+    for i in range(n):
+        newterm = term1 + term2
+        term1 = term2
+        term2 = newterm
+    return newterm
+def positionchecker(n):
+    if n == 11 or 12 or 13:
+        return "th"
+    n = str(n)
+    lastdigit = (n[-1])
+    if lastdigit == "1":
+        return "st"
+    elif lastdigit == "2":
+        return "nd"
+    elif lastdigit == "3":
+        return "rd"
+    else: return "th"
+def main():
+    print("This function computes the nth fibonacci number")
+    n = int(input("""
+What position fibonacci number do you want to calculate?
+For example, position 3's fibonacci number is 2: """))
+    print()
+    print("The {}{} fibonacci number is {}".format(n,positionchecker(n),fibonacci(n)))
+
+main()
