@@ -1,0 +1,15 @@
+import math
+def newtonmethod(guess, x):
+    nextguess = (guess + x/guess)/2
+    return nextguess
+def main():
+    print("This function guesses the square root of a number")
+    x = float(input("What number do you want a square root of?: "))
+    loops = int(input("How many loops do you want to conduct?: "))
+    guess = x/2
+    for i in range(loops):
+        guess = newtonmethod(guess,x)
+    print("""The final guessed value is {},
+which is off from the real value by {:.3g}""". format(guess, math.sqrt(x)-guess))
+
+main()
