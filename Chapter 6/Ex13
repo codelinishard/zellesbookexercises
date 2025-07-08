@@ -1,0 +1,15 @@
+#briefly contemplated whether it meant doing strings like "one", "thousand"
+#hopefully it didn't, else my solution would have a hundred more lines
+def toNumbers(strList):
+    numlist = []
+    for str in strList:
+        number = float(str)
+        numlist.append(number)
+    return numlist
+def test():
+    numlist = ["1", "2.5", "3", "4.7"]
+    print(toNumbers(numlist))
+
+
+test()
+
