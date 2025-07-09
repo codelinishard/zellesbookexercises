@@ -1,0 +1,21 @@
+from graphics import *
+
+def moveTo(newshape,newCenter):
+    newshape = Circle(newCenter,5)
+    return newshape
+
+def main():
+    win = GraphWin("shape", 800,800)
+    win.setCoords(0,0,20,20)
+    shape = Circle(Point(5,5),5)
+    shape.draw(win)
+    text = Text(Point(10,18),"Select your next point")
+    text.draw(win)
+    for i in range(10):
+        newCenter = win.getMouse()
+        text.setText(f"you can shift {9-i} more times")
+        shape.undraw()
+        shape = moveTo(shape,newCenter)
+        shape.draw(win)
+main()
+            
