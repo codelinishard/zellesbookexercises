@@ -1,0 +1,56 @@
+#making the loops was very difficult. I couldn't get the text to show up in large images. not sure how to fix that, tell me if you figure it out
+from graphics import*
+from tkinter.filedialog import askopenfilename
+
+def drawFace(center,size,win):
+        (xcoord, ycoord) = center
+        #defining the circles to draw first
+        face = Circle(Point(xcoord,ycoord),size)
+        face.setFill("white")
+        face.setOutline("black")
+        Leyes = Circle(Point(xcoord+size/8,ycoord + size/4),size/4)
+        Leyes.setOutline("black")
+        Leyes.setFill("black")
+        reyes = Leyes.clone()
+        reyes.move(-size/2,0)
+        Nose = Rectangle(Point(xcoord+size/8,ycoord),Point(xcoord-size/8,ycoord-size/6))
+        Mouth = Oval(Point(xcoord-size/4,ycoord-size/3),Point(xcoord+size/4,ycoord-size/4))
+        
+        #actually drawing
+        face.draw(win)
+        Leyes.draw(win)
+        reyes.draw(win)
+        Nose.draw(win)
+        Mouth.draw(win)
+
+def censor(window):
+        text = Text(Point(10,5),"Click to centre of the face")
+        text.setFill("yellow")
+        text.setStyle("bold")
+        text.draw(window)
+        centre = window.getMouse()
+        text.setText("Click the furthest part of the face from centre")
+        radius = window.getMouse()
+        centre = (centre.getX(),centre.getY())
+        radius = ((radius.getX()-centre[0])**2 + (radius.getY()-centre[1])**2)**0.5
+        drawFace(centre,radius,window)
+        text.setText("click again to proceed")
+        window.getMouse()
+        text.setText("")
+
+def main():
+        count = int(input("How many faces do you want to censor?: "))
+        print("This function will censor faces. Click the centre of a face and click the circumference of face to censor.")
+        print("Select file to censor")
+        file = askopenfilename()
+        image= Image(Point(10,10),file)
+        width = image.getWidth()
+        height = image.getHeight()
+        window = GraphWin("face", width,height)
+        window.setCoords(0.0,0.0,20,20)
+        image.draw(window)
+        for i in range(count):
+                censor(window)
+        
+
+main()
