@@ -1,21 +1,18 @@
+
 def main():
-    print("This function checks the classification of a student by credit")
-    
-    try: 
-        credit = int(input("What is the student's credit?: "))
-        if credit >=26:
-            standing = "Senior"
-        elif credit >= 16:
-            standing = "Junior"
-        elif credit >= 7:
-            standing = "Sophomore"
-        elif credit >= 0:
-            standing = "Freshman"
-        else: 
-            print("credit cannot be negative")
-            return
-    except ValueError:
-        print("the input is invalid")
+    print("This function calculates BMI, taking weight in pounds and height in inches")
+    try:
+        weight, height = map(float, input("What is the weight, height?: ").split(","))
+    except: 
+        print("input is invalid")
         return
-    print(f"the student's class standing is '{standing}'")
-main()
+    if weight <= 0 or height <= 0:
+        print("The weight and height of a person must both be positive")
+        return
+    bmi = weight* 720/height**2
+    if bmi <= 25 and bmi >= 19:
+        print(f"This person is within healthy range with a bmi of {bmi:.3g}")
+    elif bmi > 25:
+        print(f"This person is above the healthy range with a bmi of {bmi:.3g} ")
+    else:
+        print(f"This person is below the healthy range with a bmi of {bmi:.3g} ")
