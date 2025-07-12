@@ -1,0 +1,35 @@
+from tkinter.filedialog  import askopenfilename
+def squareEach(nums):
+    newlist =[]
+    for number in nums:
+        number = number**2
+        newlist.append(number)
+    return newlist
+
+def sumList(nums):
+    sum = 0
+    for number in nums:
+        sum += float(number)
+    return sum
+
+def toNumbers(strList):
+    numlist = []
+    for str in strList:
+        number = float(str)
+        numlist.append(number)
+    return numlist
+
+def main():
+    filename = askopenfilename()
+    infile = open(filename,"r")
+    numlist = infile.readlines()
+    strippedlist = []
+    for line in numlist:
+        item = line.strip("\n")
+        strippedlist.append(item)
+    strippedlist = toNumbers(strippedlist)
+    strippedlist = squareEach(strippedlist)
+    strippedlist = sumList(strippedlist)
+    infile.close()
+    print(f"the sum of the squares of the numbers in the list is {strippedlist}")
+main()
