@@ -1,18 +1,15 @@
 def main():
-    print("This function calculates BMI, taking weight in pounds and height in inches")
-    try:
-        weight, height = map(float, input("What is the weight, height?: ").split(","))
-    except: 
-        print("input is invalid")
-        return
-    if weight <= 0 or height <= 0:
-        print("The weight and height of a person must both be positive")
-        return
-    bmi = weight* 720/height**2
-    if bmi <= 25 and bmi >= 19:
-        print(f"This person is within healthy range with a bmi of {bmi:.3g}")
-    elif bmi > 25:
-        print(f"This person is above the healthy range with a bmi of {bmi:.3g} ")
+    print("This function calculates the fine for speeding if any")
+    speedlim = int(input("What is the speed limit?: "))
+    speed = int(input("What was the clocked speed?: "))
+    if speed > speedlim:
+        print("This speed is illegal")
+        fine = 50 + (speed - speedlim) * 5
+        if speed > 90:
+            print("An additional fine is imposed for exceeding 90mph")
+            fine += 200
+        print(f"The fine to pay is ${fine:.2f}")
     else:
-        print(f"This person is below the healthy range with a bmi of {bmi:.3g} ")]
+        print("This speed is legal")
+
 main()
