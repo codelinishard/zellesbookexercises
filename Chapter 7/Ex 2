@@ -1,0 +1,15 @@
+# this is a repeat of chapter 5
+def main():
+    print("This program gives quiz results grades.")
+    score = int(input("What is the score?: "))
+    if score == 5:
+        grade = "A"
+    elif score == 4:
+        grade = "B"
+    elif score == 3:
+        grade = "C"
+    elif score == 2:
+        grade = "D"
+    elif score == 0 or 1:
+        grade = "F"
+    print(f"The grade will be {grade}")
