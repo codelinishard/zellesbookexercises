@@ -1,0 +1,15 @@
+def main():
+    score = int(input("input the score: "))
+    if score >=89:
+        result = 4
+    elif score >=79:
+        result = 3
+    elif score >=69:
+        result = 2 
+    elif score >=59:
+        result = 1
+    else: result = 0
+    grades = ["F", "D", "C", "B", "A"]
+    result_grade = grades[result]
+    print("your grade is {}".format(result_grade))
+main()
