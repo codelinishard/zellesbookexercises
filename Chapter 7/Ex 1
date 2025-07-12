@@ -1,0 +1,13 @@
+def main():
+    print("This programme calculates how much to pay a worker.")
+    hours, rate = map(float, input("input the hours worked and hourly rate split with comma: ").split(","))
+    if hours > 40:
+        extrahours = hours - 40
+        pay = extrahours* rate * 1.5 + hours * rate
+    elif hours >= 0:
+        pay = extrahours* rate * 1.5 + hours * rate
+    else:  
+        print("value inputted invalid.")
+        return
+    print(f"The total wages for the week is {pay:.2f}")
+main()
