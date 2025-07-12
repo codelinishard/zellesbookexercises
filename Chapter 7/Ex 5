@@ -1,0 +1,21 @@
+def main():
+    print("This function checks the classification of a student by credit")
+    
+    try: 
+        credit = int(input("What is the student's credit?: "))
+        if credit >=26:
+            standing = "Senior"
+        elif credit >= 16:
+            standing = "Junior"
+        elif credit >= 7:
+            standing = "Sophomore"
+        elif credit >= 0:
+            standing = "Freshman"
+        else: 
+            print("credit cannot be negative")
+            return
+    except ValueError:
+        print("the input is invalid")
+        return
+    print(f"the student's class standing is '{standing}'")
+main()
