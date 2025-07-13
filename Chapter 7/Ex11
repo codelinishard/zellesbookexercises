@@ -1,0 +1,15 @@
+# I did year/100 - year//100 == 0 initially. surprise surprise python has a convenient function for remainders
+def main():
+    print("This checks to see if a year is a leap year")
+    year = int(input("Input a year to check: "))
+    if year % 4 == 0:
+        if  year % 100 == 0: # century year check
+            if year % 400 == 0:
+                print(f"The year {year} is a leap year")
+            else: print(f"The year {year} is not a leap year")
+        else: # divisible by 4 and not a century year, definitely a leap year
+            print(f"The year {year} is a leap year")
+    else: # failed check
+        print(f"The year {year} is not a leap year")
+
+main()
