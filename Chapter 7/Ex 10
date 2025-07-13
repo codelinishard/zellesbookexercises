@@ -1,0 +1,21 @@
+def main():
+    print("This function computes the date of Easter from 1900 to 2099 inclusive")
+    year = int(input("Input the year to check: "))
+    delayed = [1954, 1981, 2049, 2076]
+    if year < 1900 or year > 2099:
+        print("Invalid year")
+        return
+    a = year % 19
+    b = year % 4
+    c = year % 7
+    d = (19*a + 24)%30
+    e = (2*b + 4*c + 6*d + 5)%7
+    day = d + e 
+    if year in delayed:
+        day = day - 7
+    if day > 9:
+        day = day - 9
+        print(f"The date of Easter is April {day}")
+    else: print(f"The date of Easter is March {22 + day}")
+
+main()
