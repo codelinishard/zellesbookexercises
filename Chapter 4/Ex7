@@ -1,45 +1,57 @@
+# ported from chapter 7 Ex14. The original solution was too unreadable when I came back to reuse code.
 from graphics import *
 def main():
+        #drawing window
         win = GraphWin("Circle Intersection",800,800)
         win.setCoords(-10,-10,10,10)
         win.setBackground("white")
+        #get circle info
         radius = Text(Point(-2,0),"What is the radius of the circle")
         radentry= Entry(Point(3,0),3)
+        radius.draw(win)
+        radentry.draw(win)
+        #get line info
         y_int= Text(Point(-2,-3),"what is the y-intercept of the line")
         yentry= Entry(Point(3,-3),3)
-        radius.draw(win)
         yentry.draw(win)
         y_int.draw(win)
-        radentry.draw(win)
         prompt = Text(Point(0,5),"Press 'leftclick' once after the values are filled in")
         prompt.draw(win)
-        #stalling
+        #make the redraws happen after both values are filled instead of instant
         win.getMouse()
+        # making room for drawing
         yentry.undraw()
         radentry.undraw()
+        radius.undraw()
+        y_int.undraw()
+        prompt.undraw()
         yentry=float(yentry.getText())
         radentry=float(radentry.getText())
+        # stats of objects
         circ= Circle(Point(0,0),radentry)
         y_interceptline= Line(Point(-10,yentry),Point(10,yentry))
         circ.draw(win)
         y_interceptline.draw(win)
-        radius.undraw()
-        y_int.undraw()
-        x1 = -(radentry**2 - yentry**2)**0.5
-        x2 = (radentry**2 - yentry**2)**0.5
-        prompt.setText("The x values of intersection are")
-        x1text = Text(Point(x1, yentry +1), x1)
-        x2text = Text(Point(x2, yentry +1), x2)
-        x1text.draw(win)
-        x2text.draw(win)
-        x1circ = Circle(Point(x1, yentry),0.1)
-        x2circ = Circle(Point(x2, yentry), 0.1)
-        x1circ.setFill("red")
-        x2circ.setFill("red")
-        x1circ.draw(win)
-        x2circ.draw(win)
+        #intersection coordinates
+        try:
+            x1 = -(radentry**2 - yentry**2)**0.5
+            x2 = (radentry**2 - yentry**2)**0.5
+            x1text = Text(Point(x1, yentry +1), x1)
+            x2text = Text(Point(x2, yentry +1), x2)
+            x1text.draw(win)
+            x2text.draw(win)
+            x1circ = Circle(Point(x1, yentry),0.1)
+            x2circ = Circle(Point(x2, yentry), 0.1)
+            x1circ.setFill("red")
+            x2circ.setFill("red")
+            x1circ.draw(win)
+            x2circ.draw(win)
+            prompt.setText("The x values of intersection are")
+        except:
+            error = Text(Point(0,5),"There are no intersections")
+            error.draw(win)
         
-        Close = Text(Point(0,-4),"Press <Enter> to quit.")
+        Close = Text(Point(0,-6),"Press <Enter> to quit.")
         Close.draw(win)
         win.getKey()
         win.close()
