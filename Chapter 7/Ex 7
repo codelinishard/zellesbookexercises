@@ -1,0 +1,33 @@
+# I'm assuming the babysitter doesn't work past 2400 unless the programme is upgraded to also ask for when to wake the kids up
+# in that case, I'd use a second function specifically to handle when there's overnight work to not have a bloated timeconvesion() function
+# doing a 12h format is unnecessary work
+def timeconversion(starthour,startmin,endhour,endmin):
+    #converting fees to by minute
+    nightfee = 1.75/60
+    dayfee = 2.5/60
+    #if the payrate is unchanged throughout
+    if endhour < 21 and starthour < 21:
+        bill = ((endhour-starthour)*60 + endmin- startmin) * dayfee
+    elif endhour > 21 and starthour > 21:
+        bill = ((endhour-starthour)*60 + endmin- startmin) * nightfee
+    else: #payrate changed during job
+        nightbill = ((endhour - 21)*60 + endmin) * nightfee
+        daybill = ((21-starthour)*60 + 60 - startmin) * dayfee
+        bill = nightbill + daybill
+    return bill
+
+def main():
+    print("This function calculates the total babysitting bill")
+    start, end = input("Input the start time and endtime in hh:min 24 hour format split by comma: ").split(",")
+    starthour, startmin = map(int, start.split(":"))
+    endhour, endmin = map(int, end.split(":"))
+    if endhour > 24 or starthour >= 24 or starthour > endhour :
+        print("Hours are invalid")
+        return
+    elif endmin >= 60 or startmin >= 60:
+        print("Minutes are invalid")
+        return
+    bill = timeconversion(starthour,startmin,endhour,endmin)
+    print(f"The total bill is {bill:.2f}.")
+
+main()
