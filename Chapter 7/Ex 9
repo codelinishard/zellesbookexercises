@@ -1,0 +1,17 @@
+def main():
+    print("This function computes the date of Easter from 1982 to 2048 inclusive")
+    year = int(input("Input the year to check: "))
+    if year > 2048 or year < 1982:
+        print("Invalid year")
+        return
+    a = year % 19
+    b = year % 4
+    c = year % 7
+    d = (19*a + 24)%30
+    e = (2*b + 4*c + 6*d + 5)%7
+    if d + e > 9:
+        day = d + e - 9
+        print(f"The date of Easter is April {day}")
+    else: print(f"The date of Easter is March {22 + d + e}")
+
+main()
