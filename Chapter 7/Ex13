@@ -1,0 +1,61 @@
+#Recycling functions feel great, though I couldn't copy wholesale here either. hmm
+# had to moderately rewrite previous function to adapt it here. Wonder if I could've written the old functions such that it is easily reused
+def leapyeartest(year):
+    if year % 4 == 0:
+        if  year % 100 == 0: # century year check
+            if year % 400 == 0:
+                return True
+            else: return False
+        else: # divisible by 4 and not a century year, definitely a leap year
+            return True
+    else: # failed check
+        return False
+def datecheck(day, month, year):
+    full31 = [1,3,5,7,8,10,12]
+    only30 = [4,6,9,11]
+    if month in full31:
+        if day < 1 or day > 31:
+            return "invalid due to day"
+        else:
+            return "valid"
+    elif month in only30:
+        if day < 1 or day > 30:
+            return "invalid due to day"
+        else:
+            return "valid"
+    else: # handling special case of february that has < 30 days and is affected by year
+        if leapyeartest(year):
+            if day < 1 or day > 29:
+                return "invalid due to day"
+            else:
+                return "valid"
+        else: # not leap year
+            if day < 1 or day > 28:
+                return "invalid due to day"
+            else:
+                return "valid"
+def validity(day, month, year):
+    if month > 12 or month < 1:
+        print("invalid due to month")
+        return "Month error"
+    validity = datecheck(day, month,year)
+    if validity == "valid":
+        return True
+    else: return False
+    
+
+def main():
+    day, month, year = map(int, input("Input the date in Day/Month/Year format: ").split("/"))
+    validcheck = validity(day, month, year)
+    if validcheck:
+        dayNum = 31*(month - 1)+ day
+        if month > 2:
+            dayNum = dayNum - ((4*month+23)//10)
+        if leapyeartest(year) and month > 2:
+            dayNum = dayNum + 1
+        print(f"The day of the date is {dayNum}")
+    elif validcheck == "Month error":
+        return
+    else: print("Invalid date due to day")
+    
+main()
