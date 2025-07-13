@@ -1,0 +1,12 @@
+def main():
+    print("This function checks a person's eligibility for senate and house")
+    age, citizenyears = map (int, input("Input the age and years of citizenship split by a comma: ").split(","))
+    print()
+    if age >= 30 and citizenyears >= 9:
+        print("The person is eligible for senate and house")
+    elif age >= 25 and citizenyears >= 7:
+        print("The person is eligible for house")
+    else:
+        print("The person is ineligible for both senate and house")
+
+main()
