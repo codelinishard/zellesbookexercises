@@ -1,0 +1,47 @@
+from graphics import *
+
+def main():
+        win = GraphWin("Line Segment",800,800)
+        win.setCoords(-10,-10,10,10)
+        win.setBackground("white")
+        intro = Text(Point(0,8),"Click at two points to draw a line.")
+        intro.draw(win)
+        coord1 = win.getMouse()
+        x1 = coord1.getX()
+        y1 = coord1.getY()
+        coord2 = win.getMouse()
+        x2 = coord2.getX()
+        y2 = coord2.getY()
+
+        # actual calculations
+        dx = x1 - x2
+        dy = y1 - y2
+        if dx == 0:
+            gradient = "infinity"
+        else: 
+            gradient = dy/dx
+        length = ((dx)**2 +(dy)**2)**0.5
+        midpointx = (x1 + x2)/2
+        midpointy = (y1 + y2)/2
+        midpoint = Circle(Point(midpointx,midpointy),0.05)
+        midpoint.setFill("cyan")
+        #drawing
+        line = Line(Point(x1,y1),Point(x2,y2))
+        midpoint.draw(win)
+        line.draw(win)
+        lengthdis = Text(Point(-3,-8),"length: ")
+        gradientdis = Text(Point(-3,-9),"gradient: ")
+        intro.setText("Cyan dot marks the midpoint")
+        lengthval = Text(Point(0,-8),length)
+        gradientval = Text(Point(0,-9), gradient)
+        lengthdis.draw(win)
+        gradientdis.draw(win)
+        lengthval.draw(win)
+        gradientval.draw(win)
+        
+        Close = Text(Point(6,8000),"Press <Enter> to quit.")
+        Close.draw(win)
+        win.getKey()
+        win.close()
+
+main()
