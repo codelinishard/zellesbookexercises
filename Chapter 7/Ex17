@@ -1,0 +1,43 @@
+# all 1 are replaced with random so the ball bounce is more fun to me
+from graphics import*
+import random
+def bouncing():
+        
+        win = GraphWin("boucing ball", 400,400)
+        win.setBackground ("brown")
+        win.setCoords(0.0,0.0,100,100)
+        #the circle
+        yellow = Circle(Point(50,50),1)
+        yellow.setFill("yellow")
+        yellow.draw(win)
+        dx = random.random()
+        dy = random.random()
+
+        for i in range(100001):
+                yellow.undraw()
+                yellow.move(dx,dy)
+                yellow.draw(win)
+                if yellow.getCenter().getX() >= 99:
+                        dx = -random.random()
+                elif yellow.getCenter().getX() <= 1:
+                        dx = random.random()
+                elif yellow.getCenter().getY() >= 99:
+                        dy = -random.random()
+                elif yellow.getCenter().getY() <= 1:
+                        dy = random.random()
+                elif yellow.getCenter() == (1,1):
+                        dy = random.random()
+                        dx = random.random()
+                elif yellow.getCenter() == (1,99):
+                        dy = -random.random()
+                        dx = random.random()
+                elif yellow.getCenter() == (99,1):
+                        dy = -random.random()
+                        dx = random.random()
+                elif yellow.getCenter() == (99,99):
+                        dy = -random.random()
+                        dx = -random.random()
+                
+                update(45) #pause so rate is not more than 45 times a second
+                
+bouncing()
