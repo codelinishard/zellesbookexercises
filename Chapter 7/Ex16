@@ -1,0 +1,53 @@
+from graphics import*
+
+def archery():
+        #for easy central symmetry
+        win = GraphWin("Archery target", 900,900)
+        win.setBackground ("brown")
+        win.setCoords(0.0,0.0,14,14)
+        #defining the circles to draw first
+        white = Circle(Point(7.0,7.0),5)
+        white.setFill("white")
+        black = Circle(Point(7.0,7.0),4)
+        black.setFill("black")
+        blue = Circle(Point(7.0,7.0),3)
+        blue.setFill("blue")
+        red = Circle(Point(7.0,7.0),2)
+        red.setFill("red")
+        yellow = Circle(Point(7.0,7.0),1)
+        yellow.setFill("yellow")
+        #actually drawing
+        white.draw(win)
+        black.draw(win)
+        blue.draw(win)
+        red.draw(win)
+        yellow.draw(win)
+        #instructions
+        instructions = Text(Point(7,2),"""
+Click five times to represent arrows shot at target
+the score will be summed up as you 'shoot' your arrows""")
+        instructions.draw(win)
+    
+
+        #scoring calculations
+        score = 0
+        scoretext = Text(Point(7,13),"Current score is {}".format(score))
+        for i in range(5):
+            point = win.getMouse()
+            scoretext.undraw()
+            x = point.getX()
+            y = point.getY()
+            radius = ((x-7)**2+(y-7)**2)**0.5
+            if radius <= 1:
+                score += 9
+            elif radius <= 2:
+                score += 7
+            elif radius <=3:
+                score += 5
+            elif radius <= 4:
+                score += 3
+            elif radius <= 5:
+                score += 1
+            scoretext.setText("Current score is {}".format(score))
+            scoretext.draw(win)
+archery()
