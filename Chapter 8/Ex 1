@@ -1,0 +1,14 @@
+def main():
+    print("This function whill output the fibonacci number of your choice:")
+    n = int(input("Enter a number: "))
+    firstnum = 0
+    secondnum = 1
+    loopcount = 1 #this handles n = 1
+    while True:
+        if loopcount == n: break
+        nextnum = firstnum + secondnum
+        firstnum = secondnum
+        secondnum = nextnum
+        loopcount += 1
+    print(f"Fibonacci number at position {n} is {secondnum}")
+main()
