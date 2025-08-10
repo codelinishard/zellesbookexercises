@@ -1,0 +1,17 @@
+# I discovered too late that I misunderstood rows and columns, but the meaning is conveyed anyway right?
+def formula(temp, windspeed):
+    index = 35.74 + 0.6215 * temp - 35.75*(windspeed**0.16) + 0.4275 * temp * windspeed**0.16
+    return index
+
+def main():
+    print("this prints a table of windchill values")
+    print("Windspeed| {:3} {:3} {:3} {:3} {:3} {:3} {:3} {:3} {:3} {:3}".format(5,10,15,20,25,30,35,40,45,50))
+    print("----------------------------------------------------------------------")
+    temps = [-20,-10,0,10,20,30,40,50,60]
+
+    for i in range(9): #windspeeds from 5 to 50
+        print("{}{:>4} {:3.0f} {:3.0f} {:3.0f} {:3.0f} {:3.0f} {:3.0f} {:3.0f} {:3.0f} {:3.0f} {:3.0f}".format("Temp: ", str(temps[i])+"|",formula(temps[i],5),
+        formula(temps[i],10),formula(temps[i],15),formula(temps[i],20),formula(temps[i],25),formula(temps[i],30),formula(temps[i],35),
+        formula(temps[i],40),formula(temps[i],45),formula(temps[i],50)))
+main()
+
