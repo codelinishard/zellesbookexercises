@@ -1,0 +1,15 @@
+#suspiciously easy. maybe sequence meant adding everything one by one, but this seems far more efficient
+def main():
+    print("This calculates total cooling and heating")
+    cooling_degree = 0
+    heating_degree = 0
+    sequence = input("Enter a sequence of temperatures separated by spaces: ")
+    temperatures = sequence.split()
+    for temp in temperatures:
+        if temp < 60:
+            cooling_degree += 60 - int(temp)
+        elif temp > 60:
+            heating_degree += int(temp) - 60
+    print("Total cooling degree days:", cooling_degree)
+    print("Total heating degree days:", heating_degree)
+main()
