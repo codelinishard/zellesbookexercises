@@ -1,0 +1,59 @@
+#2 versions, efficient and less efficient. I thought of the less efficient version, typed it out before realising the better solution
+#version 1
+def prime(num):
+    divisor = 2
+    while num % divisor != 0:
+         divisor += 1
+         if divisor == num: #num is prime
+            return True
+    return False #otherwise num is not prime
+    
+def main():
+    print("This finds two prime numbers that add up to a given number.")
+    num = int(input("Enter a number: "))
+    if num <= 2:
+        print("Number must be greater than 2")
+        return
+    subject = 3
+    primelist = [2]
+    while subject <= num/2:
+        if prime(subject):
+            primelist.append(subject)
+        subject += 1
+    totalprimes = len(primelist)
+    for i in range(totalprimes):
+        if prime(num-primelist[i]):
+            print(f"{primelist[i]} + {num - primelist[i]} = {num}")
+            return
+    print("No two primes add up to that number.")
+main()
+
+#second version sums up primes until a pair sums up to the number. Horrible efficiency because loads of sums are smaller than the number.
+def prime(num):
+    divisor = 2
+    while num % divisor != 0:
+         divisor += 1
+         if divisor == num: #num is prime
+            return True
+    return False #otherwise num is not prime
+    
+def main():
+    print("This finds two prime numbers that add up to a given number.")
+    num = int(input("Enter a number: "))
+    if num <= 2:
+        print("Number must be greater than 2")
+        return
+    subject = 3
+    primelist = [2]
+    while subject <= num:
+        if prime(subject):
+            primelist.append(subject)
+        subject += 1
+    totalprimes = len(primelist)
+    for i in range(totalprimes):
+        for j in range(totalprimes):
+            if primelist[i] + primelist[j] == num:
+                print(f"{primelist[i]} + {primelist[j]} = {num}")
+                return
+    print("No two primes add up to that number.")
+main()
