@@ -1,0 +1,17 @@
+def main():
+    print("This program calculates time taken for investment to double")
+    interest = float(input("Enter annual interest rate in %: ").strip().strip("%"))
+    interest = interest / 100
+    initial = float(input("Enter initial investment amount: ").strip())
+    years = 0
+    current = initial
+    if interest == 0:
+        print("Investment will never double with 0% interest.")
+    if initial == 0:
+        print("Investment will never double with 0 initial amount.")
+    while current < initial * 2:
+        current = current * (1 + interest)
+        years += 1
+    print(f"It will take {years} years for the investment to double at an interest rate of {interest * 100}%.")
+
+main()
