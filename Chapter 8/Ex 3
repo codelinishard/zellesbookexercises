@@ -5,10 +5,15 @@ def main():
     initial = float(input("Enter initial investment amount: ").strip())
     years = 0
     current = initial
-    if interest == 0:
-        print("Investment will never double with 0% interest.")
+    if interest <= 0:
+        print("Investment will never double with 0% or lower interest.")
+        return
     if initial == 0:
         print("Investment will never double with 0 initial amount.")
+        return
+    if initial < 0:
+        print("Investment cannot be negative.")
+        return
     while current < initial * 2:
         current = current * (1 + interest)
         years += 1
