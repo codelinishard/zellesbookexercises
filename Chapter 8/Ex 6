@@ -23,6 +23,7 @@ def main():
         if prime(subject, divisor):
             primelist.append(subject)
         subject += 1
+    print(f"List of prime numbers up to {num}: {primelist}")
     return
 main()
 
