@@ -1,0 +1,30 @@
+# caught and clipped away some redundancy while reworking through the previous function
+
+def prime(num, divisor):
+    while num % divisor != 0:
+         divisor += 1
+         if divisor == num:
+            print(f"{num} is prime")
+            return True
+    print(f"{num} is not prime as it is divisible by {divisor}")
+    return False
+    
+def main():
+    print("This test for prime numbers")
+    num = int(input("Enter a number: "))
+    if num <= 2:
+        print("Number must be greater than 2")
+        return
+    subject = 3
+    primelist = [2]
+    print("2 is prime")
+    while subject <= num:
+        divisor = 2
+        if prime(subject, divisor):
+            primelist.append(subject)
+        subject += 1
+    return
+main()
+
+
+        
