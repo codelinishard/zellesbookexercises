@@ -1,0 +1,20 @@
+def main():
+    print("This test for prime numbers")
+    num = int(input("Enter a number: "))
+    if num <= 2:
+        print("Number must be greater than 2")
+        return
+    if num is float:
+        print("Number must be an integer")
+        return
+    divisor = 2
+    while divisor <= num**0.5:
+        test = num % divisor
+        if test == 0:
+            print(f"Number is not prime as it is divisible by {divisor}")
+            return
+        divisor += 1
+    else:
+        print("Number is prime")
+    return
+main()
