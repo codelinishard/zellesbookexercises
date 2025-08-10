@@ -1,0 +1,30 @@
+def main():
+    print("This calculates fuel efficiency")
+    initial_odometer = float(input("Enter the initial odometer reading (in miles): "))
+    previous_odometer = initial_odometer
+    previous_gas = 0
+    distancevalues = []
+    gasvalues = []
+    values = 0
+    while True:
+        values = input("Enter the new odometer value and gas used till that point, split with a spacing (enter to finish): ")
+        if values.strip() == "":
+            break
+        values = values.split()
+        if float(values[0]) < previous_odometer:
+            print("Error: Odometer reading must be greater than the previous reading.")
+            return
+        if float(values[1]) < previous_gas:
+            print("Error: Gas used must be greater than the previous amount.")
+        distance = float(values[0]) - previous_odometer
+        distancevalues.append(distance)
+        previous_odometer = float(values[0])
+        gas = float(values[1]) - previous_gas
+        gasvalues.append(gas)
+        previous_gas = float(values[1])
+        print(f"Distance traveled and gas used this leg: {distance} miles, {gas} gallons")
+    legcount = len(distancevalues)
+    for i in range(legcount):
+        print(f"Miles per gallon on leg {i} is {distancevalues[i] / gasvalues[i]:.2f} mpg")
+    print(f"Total miles per gallon is {sum(distancevalues) / sum(gasvalues):.2f} mpg")
+main()
