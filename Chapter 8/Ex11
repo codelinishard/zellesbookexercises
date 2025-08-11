@@ -7,9 +7,9 @@ def main():
     temperatures = sequence.split()
     for temp in temperatures:
         if temp < 60:
-            cooling_degree += 60 - int(temp)
-        elif temp > 60:
-            heating_degree += int(temp) - 60
+            heating_degree += 60 - int(temp)
+        elif temp > 80:
+            cooling_degree += int(temp) - 80
     print("Total cooling degree days:", cooling_degree)
     print("Total heating degree days:", heating_degree)
 main()
