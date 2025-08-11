@@ -1,0 +1,20 @@
+from tkinter.filedialog import askopenfilename
+
+def main():
+    print("This calculates total cooling and heating")
+    infileName = askopenfilename()
+    Infile = open(infileName, 'r')
+    cooling_degree = 0
+    heating_degree = 0
+    sequence = Infile.read()
+    temperatures = sequence.split()
+    for temp in temperatures:
+        if int(temp) < 60:
+            heating_degree += 60 - int(temp)
+        elif int(temp) > 80:
+            cooling_degree += int(temp) - 80
+    Infile.close()
+    print("Total cooling degree days:", cooling_degree)
+    print("Total heating degree days:", heating_degree)
+    input("Press Enter to exit...")
+main() 
