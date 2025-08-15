@@ -1,0 +1,46 @@
+from graphics import *
+def main():
+    win = GraphWin("Regressionline", 800, 800)
+    Exittext = Text(Point(15,15),"""stop""")
+    Exitangle = Rectangle(Point(0,0),Point(30,30))
+    Exittext.draw(win)
+    Exitangle.draw(win)
+    Xsum = 0
+    Ysum = 0
+    Xsquaredsum = 0
+    xysum = 0
+    Pointcount = 0
+    Display = Text(Point(150,220),"")
+    while True:
+        key = win.getMouse()
+        keyX = key.getX()
+        keyY = key.getY()
+        if keyX <= 30 and keyY <= 30:
+            Display.setText("""stopping. Click again
+to plot regressioin line""")
+            Display.draw(win)
+            key = win.getMouse()
+            Xmean = Xsum/Pointcount
+            Ymean = Ysum/Pointcount
+            break
+        key.draw(win)
+        Xsum += keyX
+        Ysum += keyY
+        Xsquaredsum += keyX**2
+        xysum += keyX * keyY
+        Pointcount +=1
+
+    m = (xysum - Pointcount * Xmean * Ymean)/(Xsquaredsum - Pointcount* Xmean**2)
+    y1 = Ymean + m*( (0) - Xmean)
+    y2 = Ymean + m*( (800) - Xmean)
+    Regline = Line(Point(0,y1),Point(800,y2))
+    Display.setText(f"The regression line's equation is y = {m:.2f}x {Ymean-m*Xmean:.2f}")
+
+    Exittext.undraw
+    Exitangle.undraw
+    Regline.draw(win)
+    win.getMouse()
+    
+    
+
+main()
