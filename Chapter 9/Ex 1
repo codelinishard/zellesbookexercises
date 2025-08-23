@@ -32,9 +32,9 @@ def simNGames(n, probA, probB):
     winsB = 0
     for i in range(n):
         if i%2 == 0:
-            firstserve = "B"
-        else:
             firstserve = "A"
+        else:
+            firstserve = "B"
         scoreA, scoreB = simOneGame(probA, probB,firstserve)
         if scoreA > scoreB:
             winsA = winsA + 1
