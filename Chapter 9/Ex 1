@@ -31,7 +31,11 @@ def simNGames(n, probA, probB):
     winsA = 0
     winsB = 0
     for i in range(n):
-        scoreA, scoreB = simOneGame(probA, probB)
+        if i%2 == 0:
+            firstserve = "B"
+        else:
+            firstserve = "A"
+        scoreA, scoreB = simOneGame(probA, probB,firstserve)
         if scoreA > scoreB:
             winsA = winsA + 1
         else:
@@ -45,11 +49,11 @@ def simNGames(n, probA, probB):
                 return winsA, winsB
     return winsA, winsB
 
-def simOneGame(probA, probB):
+def simOneGame(probA, probB,firstserve):
     # Simulates a single game of racquetball between players whose
     # abilities are represented by the probability of winning a serve.
     # Returns final scores for A and B
-    serving = "A"
+    serving = firstserve
     scoreA = 0
     scoreB = 0
     while not gameOver(scoreA, scoreB):
