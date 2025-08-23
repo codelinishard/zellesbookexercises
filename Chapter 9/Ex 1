@@ -40,7 +40,7 @@ def simNGames(n, probA, probB):
             winsA = winsA + 1
         else:
             winsB = winsB + 1
-        if n//2 == 0:
+        if n%2 == 0:
             # If n is even, winner need to win at least half of the games so +1 is needed
             if winsA >= round(n/2+1) or winsB >= round(n/2+1):
                 return winsA, winsB
