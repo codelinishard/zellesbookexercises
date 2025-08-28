@@ -1,0 +1,56 @@
+import random
+def main():
+    printIntro()
+    n = int(input("input the number of simulations to do: "))
+    busts = simNgames(n)
+    printSummary(n,busts)
+
+def printIntro():
+    print("This programme calculates the odds a player/dealer goes bust in blackjack")
+    print("The simulated dealer will take cards until at least 17 is drawn")
+    print("Aces are counted as 11 only if the results become 17 to 21, otherwise it's 1")
+
+def simNgames(n):
+    busts = 0
+    for i in range(n):
+        result = simOneGame()
+        if result:
+            busts += 1
+    return busts
+
+def simOneGame():
+    # pool containing all the cards (thus their odds of being drawn)
+    deck = [1, 1, 1, 1,
+2, 2, 2, 2,
+3, 3, 3, 3,
+4, 4, 4, 4,
+5, 5, 5, 5,
+6, 6, 6, 6,
+7, 7, 7, 7,
+8, 8, 8, 8,
+9, 9, 9, 9,
+10, 10, 10, 10,
+10, 10, 10, 10,
+10, 10, 10, 10,
+10, 10, 10, 10]
+    max= len(deck)
+    hand = 0
+    hasAce = 0 #0 is false
+    while hand < 17: #once 17 is reached the dealer stops drawing
+        newCard = deck[random.randint(0,max-1)]
+        if newCard == 1:
+            hasAce += 1
+            hand += 11
+        else: hand += newCard
+        while hand > 21 and hasAce >= 1:
+            hand = hand - 10
+            hasAce = hasAce - 1
+    if hand > 21:
+        return True
+    else: return False 
+
+def printSummary(n,busts):
+    print(f"In {n} games, the dealer busted {busts} times.")
+    print(f"The probability the dealer busts is {busts/n:.1%}" )
+
+main()
