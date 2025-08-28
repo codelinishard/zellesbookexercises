@@ -41,7 +41,7 @@ def simNGames(n, probA, probB):
     return winsA, winsB
 
 def simOneGame(probA, probB,firstserve):
-    # Simulates a single game of racquetball between players whose
+    # Simulates a single game of volleyball between players whose
     # abilities are represented by the probability of winning a serve.
     # Returns final scores for A and B
     serving = firstserve
@@ -62,7 +62,7 @@ def simOneGame(probA, probB,firstserve):
     return scoreA, scoreB
 
 def gameOver(a, b):
-    # a and b represent scores for a racquetball game
+    # a and b represent scores for a volleyball game
     # Returns True if the game is over, False otherwise.
     return (a==25) or (b==25)
 
