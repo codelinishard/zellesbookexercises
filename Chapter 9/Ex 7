@@ -1,0 +1,43 @@
+#had a quick reminder of how probabilities work before I figured out how to dice this up (pun intended)
+
+import random
+def main():
+    printIntro()
+    n = int(input("How many games to simulate?: "))
+    wins = simNGames(n)
+    printSummary(wins,n)
+
+def printIntro():
+    print("""Craps is a game involving a pair of die.
+if the initial roll is 2, 3, 12, they lose. If 7 or 11, they win.
+Otherwise, the player keeps rerolling until they get the same value
+as their initial roll, winning. If 7 is rolled before then, they lose.""")
+
+def simNGames(n):
+    wins = 0
+    for i in range(n):
+        result = simOneGame()
+        if result:
+            wins += 1
+    return wins
+
+def simOneGame():
+    #doing this as randint(2,12) would cause the lower numbers to be abnormally more likely. score 2 is 2.78% , but score 6 is 13.9%.
+    # randint(2,12) would make both 8.33% chance of being picked.
+    initial = random.randint(1,6) + random.randint(1,6)
+    if initial == 7 or initial == 11:
+        return True
+    elif initial == 2 or initial ==3 or initial ==12:
+        return False
+    roll = 0
+    while roll != initial:
+        roll = random.randint(1,6) + random.randint(1,6)
+        if roll == 7:
+            return False
+    #loop only breaks after roll = initial, so it's always true here
+    return True
+
+def printSummary(wins,n):
+    print(f"In {n} games, {wins} was won. The estimated probability of winning is {wins/n:.1%}")
+
+main()
