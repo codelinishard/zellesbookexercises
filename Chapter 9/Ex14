@@ -1,0 +1,42 @@
+from graphics import *
+import math
+from random import random
+def main():
+    print("walking ends once line touches 'quit'")
+    win = GraphWin("walk", 500, 500)
+    win.setCoords(-50,-50,50,50)
+    
+    box = Rectangle(Point(-50,-50),Point(-47,-47))
+    box.draw(win)
+    text = Text(Point(-48,-48),"quit")
+    text.draw(win)
+    coord = Point(0,0)
+    coord.draw(win)
+    displacementlin
+    while not endcondition(win,coord):
+        newcoord = stepcalculate(coord)
+        line = Line(newcoord,coord)
+        line.draw(win)
+        coord = newcoord
+    win.getMouse()
+
+def stepcalculate(coord):
+    x = coord.getX()
+    y = coord.getY()
+    angle = random() * 2 * math.pi
+    x1 = x + math.cos(angle)
+    y1 = y + math.sin(angle)
+    while x1 >= 50 or x1 <= -50 or y1 >= 50 or y1 <= -50:
+        angle = random() * 2 * math.pi
+        x1 = x + math.cos(angle)
+        y1 = y + math.sin(angle)
+    return Point(x1,y1)
+def endcondition(win,coord):
+    x = coord.getX()
+    y = coord.getY()
+    if x <= -47 and y <= -47:
+        return True
+    
+main()
+        
+    
