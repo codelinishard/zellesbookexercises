@@ -1,0 +1,68 @@
+#I suspect this doesn't work because the value for (0.5,0,0) is very high. (0,0,0) is fine though.
+import random
+from fractions import Fraction
+def main():
+    printIntro()
+    n = 1000000 #int(input("How many times should the view be simulated?"))
+    a = walltracker(n) 
+    printsummary(a,n)
+
+def printIntro():
+    print("This will esimate the field of vision taken up by the closest wall")
+    print("By having a coordinate system for the cube and recording the times")
+    print("That wall is seen. Centre of cube is (0,0,0)")
+
+def walltracker(n):
+    a = 0
+    for i in range(n):
+        wallseen = wallview()
+        if wallseen == "a":
+            a+=1
+    return a
+
+def wallview():
+    startCoords = (0.5,0,0) #nearest wall is at x = 1
+    wallCoords = viewformula(startCoords)
+    #if x = 1, y and z < 1: face A, the nearer wall
+    #if x = -1, y and z < 1: opposite of face A, B
+    #if z =1, x and y < 1: face C
+    #if z = -1, x and y < 1: opposite of face C, D
+    #if y = 1, x and z < 1: face E
+    #if y = -1, x and z < 1: opposite of face E, F
+    wallseen = wallcheck(wallCoords)
+    return wallseen
+def viewformula(startCoords):
+    x,y,z = startCoords
+    #I suspect this doesn't work because the value for (0.5,0,0) is too high. (0,0,0) is fine though.
+    while abs(x) < 1 and abs(y) < 1 and abs(z) < 1:
+        x += random.random() -0.5
+        y += random.random() -0.5
+        z += random.random() -0.5
+        if abs(x) == abs(y) or abs(x) == abs(z) or abs(y) == abs(z):
+            x,y,z = startCoords #redo because it hit a corner
+    return (x,y,z)
+def wallcheck(wallCoords):
+    x,y,z = wallCoords
+    if abs(x) >= 1 and abs(x) > abs(y) and abs(x) > abs(z):
+        if x > 0:
+            return "a"
+        else:
+            return "b"
+    elif abs(y) >= 1 and abs(y) > abs(x) and abs(y) > abs(z):
+        if y > 0:
+            return "e"
+        else:
+            return "f"
+    else:
+        if z > 0:
+            return "c"
+        else:
+            return "d"
+        
+def printsummary(a,n):
+    try:
+        a,n = Fraction(a,n).numerator, Fraction(a,n).denominator
+        print(f"The closest wall takes up exactly {a}/{n} ({a/n:.3f}) of the field of vision")
+    except: print(f"The closest wall takes up {a}/{n} ({a/n:.3f}) of the field of vision")
+
+main()
