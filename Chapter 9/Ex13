@@ -1,0 +1,41 @@
+# Realised my misunderstanding of the question at the end. Really didn't need to separate SimulateTrials and could have written the function right in
+
+#im tired of waiting for user input, I just want to finish testing them immediately
+#im also tired of writing intros 
+import random
+def main():
+    printIntro() 
+    t = 1000 #int(input("input the number of trials of walking to simulate: "))
+    n = 10000 #int(input("input the number of steps to simulate: "))
+    overall = simulateTrials(t,n)
+    printSummary(t,n,overall)
+
+def printIntro():
+    print("Intro")
+
+def simulateTrials(t,n):
+    overall = 0
+    for i in range(t):
+        overall += simulateSteps(n)
+    overall = overall/t
+    return overall
+
+def simulateSteps(n):
+    x = 0 # left, right
+    y = 0 # front, back
+    for i in range(n):
+        d1 = random.randint(1,4) # 1 = left, 2= right, 3 = front, 4= back
+        if d1 == 1:
+            x = x -1
+        elif d1 == 2:
+            x = x +1
+        elif d1 == 3:
+            y = y +1
+        else: y = y -1
+    overall = (x**2 + y**2)**0.5
+    return overall
+
+def printSummary(t,n,overall):
+    print(f"In {t} trials that each had {n} steps taken,")
+    print(f"THe average steps we are from starting point is {overall:.2f}.")
+main()
