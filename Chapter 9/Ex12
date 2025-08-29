@@ -15,7 +15,8 @@ def simulateTrials(t,n):
     average= 0
     for i in range(t):
         h = simulateSteps(n)
-        average += h/t
+        average += h
+    average = average/t
     return average
 
 def simulateSteps(n):
