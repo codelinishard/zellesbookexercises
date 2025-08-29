@@ -1,0 +1,26 @@
+import random
+def main():
+    printIntro()
+    n = int(input("input the number of darts to simulate: "))
+    h = simulateThrows(n)
+    printSummary(h,n)
+
+def printIntro():
+    print("This programme simulates random dart throwing at a board to estimate pi")
+    print("the number of darts that hit the board against the total darts thrown")
+    print("can be used to estimate the value of pi.")
+
+def simulateThrows(n):
+    h = 0 #landings
+    for i in range(n):
+        x = 2* random.random() - 1
+        y = 2 * random.random() - 1
+        if x**2 + y**2 <= 1:
+            h += 1
+    return h
+
+def printSummary(h,n):
+    print(f"In {n} throws, {h} darts landed on the board.")
+    print(f"the esimated value of pi is 4*({h}/{n}) which is {(4*h)/n:.3f})" )
+
+main()
