@@ -1,0 +1,41 @@
+#im tired of waiting for user input, I just want to finish testing them immediately
+#im also tired of writing intros 
+import random
+def main():
+    printIntro() 
+    t = 100 #int(input("input the number of trials of walking to simulate: "))
+    n = 10000 #int(input("input the number of steps to simulate: "))
+    ave = simulateTrials(t,n)
+    printSummary(t,n,ave)
+
+def printIntro():
+    print("Intro")
+
+def simulateTrials(t,n):
+    average= 0
+    for i in range(t):
+        h = simulateSteps(n)
+        average += h/t
+    return average
+
+def simulateSteps(n):
+    h = 0 #starting position
+    for i in range(n):
+        d1 = random.randint(1,2)
+        if d1 == 1:
+            h = h - 1
+        elif d1 == 2:
+            h = h +1
+    return h
+
+def printSummary(t,n,h):
+    h = round(h)
+    if h < 0:
+        print(f"In {t} trials of {n} steps, net of {-h} steps were taken backwards")
+    if h > 0:
+        print(f"In {t} trials of {n} steps, net of {h} steps were taken forwards")
+    if h == 0:
+        print(f"After {t} trials of {n} steps, we are back at starting position")
+    
+
+main()
