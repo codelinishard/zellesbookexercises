@@ -1,0 +1,139 @@
+#combined for convenience
+
+# button.py
+from graphics import *
+from random import *
+class Button:
+    
+    """A button is a labeled rectangle in a window.
+    It is activated or deactivated with the activate()
+    and deactivate() methods. The clicked(p) method
+    returns true if the button is active and p is inside it."""
+    
+    def __init__(self, win, center, width, height, label):
+        """ Creates a rectangular button, eg:
+        qb = Button(myWin, centerPoint, width, height, 'Quit', False) """
+        
+        w,h = width/2.0, height/2.0
+        x,y = center.getX(), center.getY()
+        self.xmax, self.xmin = x+w, x-w
+        self.ymax, self.ymin = y+h, y-h
+        p1 = Point(self.xmin, self.ymin)
+        p2 = Point(self.xmax, self.ymax)
+        self.rect = Rectangle(p1,p2)
+        self.rect.setFill('lightgray')
+        self.rect.draw(win)
+        self.label = Text(center, label)
+        self.label.draw(win)
+        winningDoor = False
+        self.door = winningDoor #assigns whether this door is the winner, default no
+        
+    def clicked(self, p):
+        "Returns true if p is inside"
+        return  (self.xmin <= p.getX() <= self.xmax and
+                self.ymin <= p.getY() <= self.ymax)
+class Stattracker:
+    """A stattracker is a labelled rectangle in a window.
+    It displays the wins and losses of the current game."""
+
+    def __init__(self, win, center, width, height):
+        w,h = width/2.0, height/2.0
+        x,y = center.getX(), center.getY()
+        self.xmax, self.xmin = x+w, x-w
+        self.ymax, self.ymin = y+h, y-h
+        p1 = Point(self.xmin, self.ymin)
+        p2 = Point(self.xmax, self.ymax)
+        self.rect = Rectangle(p1,p2)
+        self.rect.setFill('lightgray')
+        self.rect.draw(win)
+        
+        self.label = Text(Point(x,self.ymax- height/4), "wins to losses")
+        self.label.draw(win)
+        self.win_no = 0
+        self.loss_no = 0
+        self.wins = Text(Point(x - width/3,y),self.win_no)
+        self.loss = Text(Point(x + width/3,y), self.loss_no)
+        self.wins.draw(win)
+        self.loss.draw(win)
+        
+    def updatescore(self,result,win):
+        if result == True:
+            self.win_no = self.win_no +1
+            self.wins.setText(self.win_no)
+            
+        if result == False:
+            self.loss_no = self.loss_no + 1
+            self.loss.setText(self.loss_no)
+
+def main():
+    win = GraphWin("Three Button Monte", 600, 600)
+    win.setBackground("white")
+    win.setCoords(0,0,12,12)
+    Introduction = Text(Point(6,10),
+    """Amongst 3 doors is 1 door that is a win.
+    The other 2 doors are a loss. The winning button is
+    randomised between rounds.""")
+    Introduction.draw(win)
+    outcome = Text(Point(6,5),"")
+    
+
+    #button creations
+    door1 = Button(win, Point(3,3),1,1,"Door 1")
+    door2 = Button(win,Point(6,3),1,1,"Door 2")
+    door3 = Button(win, Point(9,3),1,1,"Door 3")
+    Quit = Button(win, Point(6,1),1,1, "Quit")
+    stats = Stattracker(win, Point(6,7),3,2)
+
+    while True:
+        print("assigning doors")
+        Winningdoor = randint(1,3)
+        if Winningdoor == 1:
+            door1.door = True
+            winner = door1
+        if Winningdoor == 2:
+            door2.door = True
+            winner = door2
+        if Winningdoor == 3:
+            door3.door = True
+            winner = door3
+        while True:
+            print("Starting")
+            click = win.getMouse()
+            door1status = door1.clicked(click)
+            door2status = door2.clicked(click)
+            door3status = door3.clicked(click)
+            Quitstatus= Quit.clicked(click)
+            if Quitstatus == True:
+                print("quitting")
+                outcome.undraw()
+                outcome.setText("Quitting game. Click anywhere to close")
+                outcome.draw(win)
+                win.getMouse()
+                exit()
+            if (door1status or door2status or door3status) == True:
+                print("door clicked")
+                if winner.clicked(click) == True:
+                    print("a winner")
+                    outcome.undraw()
+                    outcome.setText("You've won! Click anywhere to proceed")
+                    outcome.draw(win)
+                    stats.updatescore(winner.clicked(click),win)
+                    win.getMouse()
+                else:
+                    print("lost")
+                    outcome.undraw()
+                    outcome.setText("You've lost. Click anywhere to proceed")
+                    outcome.draw(win)
+                    stats.updatescore(winner.clicked(click),win)
+                    win.getMouse()
+                door1.winningdoor= False
+                door2.winningdoor= False
+                door3.winningdoor= False
+                outcome.setText("")
+                break
+            else:
+                pass #back to waiting for click
+                print("waiting for valid click")
+
+main()
+    
