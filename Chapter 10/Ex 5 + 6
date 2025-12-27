@@ -1,0 +1,61 @@
+class Student:
+    
+    def __init__(self, name, hours, qpoints):
+        self.name = name
+        self.hours = float(hours)
+        self.qpoints = float(qpoints)
+    
+
+    def getName(self):
+        return self.name
+    
+    def getHours(self):
+        return self.hours
+    
+    def getQPoints(self):
+        return self.qpoints
+    
+    def gpa(self):
+        return self.qpoints/self.hours
+    
+    def addGrade(self, gradePoint, credits):
+        self.qpoints += gradePoint * credits
+        self.hours += credits
+    
+    GRADE_VALUES = {"A":4,"A-": 3.7, "B+": 3.3, "B":3,"B-":2.7,"C+":2.3,"C":2,"C-":1.7,"D+":1.3,"D":1,"F":0}
+
+    def addLetterGrade(self,Lettergrade, credits):
+        Lettergrade = Lettergrade.upper()
+        if Lettergrade in self.GRADE_VALUES:
+                self.qpoints += self.GRADE_VALUES[Lettergrade]*credits
+                self.hours += credits
+        else:
+            print("Input invalid and ignored in calculations")
+
+
+def main():
+    student = Student("name irrelevant", 0, 0)
+    while True:
+        functionuse = input("""Will you input course results as letters (L), numbers (N)?
+Or do you wish to terminate input (T)? Type L, N or T: """)
+
+        if functionuse == "T":
+            break
+        elif functionuse == "N":
+            gp_and_credit = input("""Input the gradePoint and credits of a course, 
+separated by a space.""")
+            gp, credit = gp_and_credit.split()
+            student.addGrade(float(gp),float(credit))
+        elif functionuse == "L":
+            gp_and_credit = input("""Input the LetterGrade and credits of a course, 
+separated by a space.""")
+            lg, credit = gp_and_credit.split()
+            student.addLetterGrade(lg,float(credit)) 
+        else: print("invalid input. Try again.")
+    
+    try: print("The GPA calculated is", student.gpa())
+    except: print("There was no input given. GPA is not calculated")
+
+if __name__ == '__main__':
+    main()
+
