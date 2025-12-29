@@ -1,0 +1,22 @@
+from math import *
+class sphere:
+    def __init__(self,radius):
+        self.radius = radius
+        self.vol = 4/3 * pi * radius**3
+        self.surfacearea = 4 * pi * radius**2
+    
+    def getRadius(self):
+        return self.radius
+    
+    def surfaceArea(self):
+        return self.surfacearea
+    
+    def volume(self):
+        return self.vol
+    
+
+def main():
+    radius = float(input("what is the radius of the sphere?: "))
+    spere = sphere(radius)
+    print(f"The surface area of the sphere is {spere.surfaceArea():.2f} unit^2 and volume {spere.volume():.2f} unit^3.")
+main()
