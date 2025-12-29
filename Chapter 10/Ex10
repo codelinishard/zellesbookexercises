@@ -1,0 +1,23 @@
+# a pointless question
+from math import *
+class cube:
+    def __init__(self,length):
+        self.ralengthdius = length
+        self.vol = length**3
+        self.surfacearea = 6 * length**2
+    
+    def getlength(self):
+        return self.length
+    
+    def surfaceArea(self):
+        return self.surfacearea
+    
+    def volume(self):
+        return self.vol
+    
+
+def main():
+    length = float(input("what is a length of the cube?: "))
+    spere = cube(length)
+    print(f"The surface area of the cube is {spere.surfaceArea():.2f} unit^2 and cube {spere.volume():.2f} unit^3.")
+main()
