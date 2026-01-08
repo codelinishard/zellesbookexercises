@@ -1,0 +1,68 @@
+# deck of cards used are comically oversized, but it works
+from random import *
+from graphics import *
+class card:
+
+    ranks = {1:"Ace",2:"2",3:"3",4:"4",5:"5",6:"6",7:"7",8:"8",9:"9",10:"10",11:"jack",12:"queen",13:"king"}
+    suits = {"d":"diamonds","c":"clubs","h":"hearts","s":"spades"}
+
+    def __init__(self,rank,suit):
+        if rank > 9:
+            self.cardvalue = 10
+        elif rank > 0: 
+            self.cardvalue = rank
+        
+        self.rank = self.ranks[rank]
+        self.suit = self.suits[suit]
+    
+    def getRank(self):
+        return self.rank
+    def getSuit(self):
+        return self.suit
+    def value(self):
+        return self.cardvalue
+    
+    def __str__(self):
+        return f"{self.rank}_of_{self.suit}"
+    
+    def draw(self,win,center):
+        filename = self.__str__() + ".png"
+        card = Image(center,filename)
+        card.draw(win)
+
+def main():
+    win = GraphWin("Playing cards", 1500, 900)
+    win.setCoords(0,0,10,10)
+    cardlist = [0,0,0,0,0]
+    ranklist = [0,0,0,0,0]
+    for i in range(5): 
+        slot = randrange(1,14,1)
+        while slot in cardlist:
+            slot = randrange(1,14,1)
+        cardlist[i] = slot
+    for i in range(5):
+        slot = randrange(1,5,1)
+        if slot == 1:
+            slot = "d"
+        elif slot == 2:
+            slot = "c"
+        elif slot == 3:
+            slot = "h"  
+        else: slot = "s"
+        ranklist[i]=slot
+
+    card1 = card(cardlist[1],ranklist[1])
+    card2 = card(cardlist[2],ranklist[2])
+    card3 = card(cardlist[3],ranklist[3])
+    card4 = card(cardlist[4],ranklist[4])
+    card5 = card(cardlist[0],ranklist[0])
+    
+    card1.draw(win,Point(2.5,7))
+    card2.draw(win,Point(5,7))
+    card3.draw(win,Point(7.5,7))
+    card4.draw(win,Point(3.3,3))
+    card5.draw(win,Point(6.6,3))
+    win.getMouse()
+    win.close()
+    
+main()
