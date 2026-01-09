@@ -1,0 +1,210 @@
+# This took way too long
+
+# face.py
+from graphics import *
+import random
+class Face:
+
+    Facestate = {1:"neutral",2:"smile",3:"wink"}
+    def __init__(self, window, center, size): #radius is "size"
+        
+        eyeSize = 0.15 * size
+        eyeOff = size / 3.1
+        mouthSize = 0.8 * size
+        mouthOff = size / 2.0
+
+        self.head = Circle(center, size)
+        self.head.draw(window)
+        self.leftEye = Circle(center, eyeSize)
+        self.leftEye.move(-eyeOff, -eyeOff)
+        self.rightEye = Circle(center, eyeSize)
+        self.rightEye.move(eyeOff, -eyeOff)
+        self.leftEye.draw(window)
+        self.rightEye.draw(window)
+
+        p1 = center.clone()
+        p1.move(-mouthSize/2, mouthOff)
+        p2 = center.clone()
+        p2.move(mouthSize/2, mouthOff)
+        self.mouth = Line(p1, p2)
+        self.mouth.draw(window)
+
+        #for use by other expressions
+        self.mouth2 = Point(0, 0)
+        self.mouth3 = Point(0, 0)
+        self.leftEye2 = Point(0, 0)
+        self.rightEye2 = Point(0, 0)
+        self.expression = 1 #tracks the Facestate
+        
+
+        #keeping variables for method use
+        self.eyeSize = eyeSize
+        self.eyeOff = eyeOff
+        self.mouthSize = mouthSize
+        self.mouthOff = mouthOff
+        self.center = center
+        self.size = size
+      
+    def reset(self):
+        #reset expressions
+        self.head.undraw()
+        self.mouth.undraw()
+        self.mouth2.undraw()
+        self.mouth3.undraw()
+        self.leftEye.undraw()
+        self.rightEye.undraw()
+        self.leftEye2.undraw()
+        self.rightEye2.undraw()
+
+        self.head = Point(0,0)
+        self.mouth = Point(0,0)
+        self.mouth2 = Point(0, 0)
+        self.mouth3 = Point(0, 0)
+        self.leftEye = Point(0, 0)
+        self.rightEye = Point(0, 0)
+        self.leftEye2 = Point(0, 0)
+        self.rightEye2 = Point(0, 0)
+     
+    def neutral(self,window):
+        self.reset()
+        self.head = Circle(self.center, self.size)
+        self.leftEye = Circle(self.center, self.eyeSize)
+        self.leftEye.move(-self.eyeOff, -self.eyeOff)
+        self.rightEye = Circle(self.center, self.eyeSize)
+        self.rightEye.move(self.eyeOff, -self.eyeOff)
+        self.leftEye.draw(window)
+        self.rightEye.draw(window)
+        self.head.draw(window)
+        
+        p1 = self.center.clone()
+        p1.move(-self.mouthSize/2, self.mouthOff)
+        p2 = self.center.clone()
+        p2.move(self.mouthSize/2, self.mouthOff)
+        self.mouth = Line(p1, p2)
+        self.mouth.draw(window)
+        
+    def smile(self,window):
+        self.reset()
+        self.head = Circle(self.center, self.size)
+        self.leftEye = Circle(self.center, self.eyeSize)
+        self.leftEye.move(-self.eyeOff, -self.eyeOff)
+        self.rightEye = Circle(self.center, self.eyeSize)
+        self.rightEye.move(self.eyeOff, -self.eyeOff)
+        self.leftEye.draw(window)
+        self.rightEye.draw(window)
+        self.head.draw(window)
+        
+        p1 = self.center.clone()
+        p1.move(-self.mouthSize/2, self.mouthOff/2)
+        p2 = self.center.clone()
+        p2.move(self.mouthSize/2, self.mouthOff/2)
+        p3 = self.center.clone()
+        p3.move(0,self.mouthOff)
+        self.mouth = Line(p1, p3)
+        self.mouth2 = Line(p2,p3)
+        self.mouth.draw(window)
+        self.mouth2.draw(window)
+
+    def wink(self,window):
+        self.reset()
+        self.head = Circle(self.center, self.size)
+        self.head.draw(window)
+        p1 = self.center.clone()
+        p1.move(-self.eyeOff+self.eyeSize,-self.eyeOff)
+        p2 = p1.clone()
+        p2.move(-self.eyeSize*1.5,+self.eyeSize)
+        p3 = p1.clone()
+        p3.move(-self.eyeSize*1.5,-self.eyeSize)
+        
+        self.leftEye = Line(p1,p2)
+        self.leftEye2 = Line(p1,p3)
+        self.leftEye.draw(window)
+        self.leftEye2.draw(window)
+                             
+        self.rightEye = Circle(self.center, self.eyeSize)
+        self.rightEye.move(self.eyeOff, -self.eyeOff)
+        self.rightEye.draw(window)
+
+        p4 = self.center.clone()
+        p4.move(self.mouthSize,self.mouthOff/4)
+        p5 = self.center.clone()
+        p5.move(-self.mouthSize,self.mouthOff)
+        self.mouth = Oval(p4,p5)
+        self.mouth.draw(window)
+    
+    def facemove(self,X,Y,window):
+        self.center = Point(X,Y)
+        #refreshing the face
+        self.reset()
+
+        if self.expression == 1:
+               self.neutral(window)
+        if self.expression == 2:
+                self.smile(window)
+        if self.expression == 3:
+                self.wink(window)
+        
+        
+    def randomface(self,window): #needs import random
+        choice = random.randrange(1,4)
+        if choice == 1:
+            self.reset()
+            self.expression = 1
+            self.smile(window)
+        if choice == 2:
+            self.reset()
+            self.expression = 2
+            self.neutral(window)
+        else:
+            self.reset()
+            self.expression = 3
+            self.wink(window)
+        
+
+
+
+
+def boundarycheck(val,lower,upper,radius):
+       if val <= lower + radius or val >= upper - radius:
+              return True
+       else: return False
+def updatewrtlimit(val,change,upperbound,lowerbound):
+    if val+change > upperbound:
+        return upperbound
+    if val+change < lowerbound:
+        return lowerbound
+    else: return val + change
+def win():
+    win = GraphWin("boucing ball", 400,400)
+    win.setBackground ("brown")
+    win.setCoords(0.0,0.0,100,100)
+    radius = 10
+    centerX = 50
+    centerY = 50
+    dx = 2**0.5
+    dy = 2**0.5
+    
+    face = Face(win,Point(centerX,centerY),radius)
+    print("start")
+    for i in range(10000):
+        print(i)
+        xcheck = boundarycheck(centerX,0,100,radius)
+        ycheck = boundarycheck(centerY,0,100,radius)
+        
+        if xcheck == True:
+            dx = -dx
+            dy = dy + dy*random.uniform(-0.1,0.1)
+            face.randomface(win)
+        if ycheck == True:
+            dy = -dy
+            dx = dx + dx* random.uniform(-0.1,0.1)
+            face.randomface(win)
+    
+        centerX = updatewrtlimit(centerX,dx,100-radius,0+radius)
+        centerY = updatewrtlimit(centerY,dy,100-radius,0+radius)
+        face.facemove(centerX,centerY,win)
+        
+        update(45) #pause so rate is not more than 45 times a second
+    
+
+win()
