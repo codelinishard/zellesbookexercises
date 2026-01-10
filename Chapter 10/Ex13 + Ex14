@@ -1,6 +1,5 @@
-# This took way too long
+# well, that took forever
 
-# face.py
 from graphics import *
 import random
 class Face:
@@ -146,15 +145,20 @@ class Face:
         
         
     def randomface(self,window): #needs import random
-        choice = random.randrange(1,4)
+        if self.expression == 1:
+            choice = random.choice([2,3])
+        elif self.expression == 2:
+            choice = random.choice([1,3])
+        elif self.expression == 3:
+            choice = random.choice([1,2])
         if choice == 1:
             self.reset()
             self.expression = 1
-            self.smile(window)
-        if choice == 2:
+            self.neutral(window)
+        elif choice == 2:
             self.reset()
             self.expression = 2
-            self.neutral(window)
+            self.smile(window)
         else:
             self.reset()
             self.expression = 3
@@ -175,7 +179,7 @@ def updatewrtlimit(val,change,upperbound,lowerbound):
         return lowerbound
     else: return val + change
 def win():
-    win = GraphWin("boucing ball", 400,400)
+    win = GraphWin("boucing ball", 400,400,autoflush=False)
     win.setBackground ("brown")
     win.setCoords(0.0,0.0,100,100)
     radius = 10
@@ -204,7 +208,7 @@ def win():
         centerY = updatewrtlimit(centerY,dy,100-radius,0+radius)
         face.facemove(centerX,centerY,win)
         
-        update(45) #pause so rate is not more than 45 times a second
+        update(80) #pause so rate is not more than 45 times a second
     
 
 win()
