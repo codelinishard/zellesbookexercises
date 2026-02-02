@@ -1,3 +1,5 @@
+#not sure why the indentation level was weird when I copied it over. it is what it is
+
 from graphics import *
 class Regression:
         def __init__(self,win):
@@ -28,6 +30,8 @@ class Regression:
               return self.m
         def getXmean(self):
               return self.Xmean
+        def getYmean(self):
+              return self.Ymean
         def predict(self,xvalue):
               y = self.Ymean + self.m * (xvalue - self.Xmean)
               return y
@@ -65,10 +69,17 @@ to plot regressioin line""")
 
     m = regress.getSlope()
     Xmean = regress.getXmean()
+    Ymean = regress.getYmean()
     print
     regress.drawLine(win,10,290)
     Display.undraw
-    Display.setText(f"The regression line's equation is y = {m:.2f}(x + {Xmean:.2f})")
+    constant = Ymean - m*Xmean
+    if constant >= 0
+    Display.setText(f"The regression line's equation is y = {m:.2f} (x +{constant:.2f}")
+    if constant <= 0
+    Display.setText(f"The regression line's equation is y = {m:.2f} (x -{constant:.2f}")
+    if constant = 0:
+    Display.setText(f"The regression line's equation is y = {m:.2f} x ")
     print("test")
     isplay.draw(win)
     Exittext.undraw
