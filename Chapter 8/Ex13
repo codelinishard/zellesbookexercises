@@ -34,8 +34,13 @@ to plot regressioin line""")
     y1 = Ymean + m*( (0) - Xmean)
     y2 = Ymean + m*( (800) - Xmean)
     Regline = Line(Point(0,y1),Point(800,y2))
-    Display.setText(f"The regression line's equation is y = {m:.2f}x {Ymean-m*Xmean:.2f}")
-
+    constant = Ymean - m*Xmean
+    if constant >= 0
+    Display.setText(f"The regression line's equation is y = {m:.2f} (x +{constant:.2f}")
+    if constant <= 0
+    Display.setText(f"The regression line's equation is y = {m:.2f} (x -{constant:.2f}")
+    if constant = 0:
+    Display.setText(f"The regression line's equation is y = {m:.2f} x ")
     Exittext.undraw
     Exitangle.undraw
     Regline.draw(win)
