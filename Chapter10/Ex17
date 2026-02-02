@@ -1,0 +1,80 @@
+from graphics import *
+class Regression:
+        def __init__(self,win):
+                self.win = win
+                self.Xsum = 0
+                self.Ysum = 0
+                self.Xsquaredsum = 0
+                self.xysum = 0
+                self.Pointcount = 0
+                self.Xmean = 0
+                self.Ymean = 0
+                self.m = 0
+                self.Regline = Line(Point(0,0),Point (0,0))
+                self.Regline
+        def addPoint(self,point):
+                x = point.getX()
+                y = point.getY()
+                self.Xsum += x
+                self.Ysum += y
+                self.Xsquaredsum += x * x
+                self.xysum += x * y
+                self.Pointcount += 1
+                self.Xmean = self.Xsum/self.Pointcount
+                self.Ymean = self.Ysum/self.Pointcount
+        def getSlope(self):
+              print(self.xysum - self.Pointcount * self.Xmean * self.Ymean)
+              self.m = (self.xysum - self.Pointcount * self.Xmean * self.Ymean)/(self.Xsquaredsum - self.Pointcount* self.Xmean**2)
+              return self.m
+        def getXmean(self):
+              return self.Xmean
+        def predict(self,xvalue):
+              y = self.Ymean + self.m * (xvalue - self.Xmean)
+              return y
+        def drawLine(self,win,startx,endx):
+            y1 = self.Ymean + self.m *( (startx) - self.Xmean)
+            y2 = self.Ymean + self.m *( (endx) - self.Xmean)
+            self.Regline = Line(Point(startx,y1),Point(endx,y2))
+            self.Regline.draw(win)
+              
+
+
+        
+
+def main():
+    win = GraphWin("Regressionline", 800, 800)
+    win.setCoords(0,0,300,300)
+    Exittext = Text(Point(15,15),"""stop""")
+    Exitangle = Rectangle(Point(0,0),Point(30,30))
+    Exittext.draw(win)
+    Exitangle.draw(win)
+    Display = Text(Point(150,220),"Click to add points to consider for regression line.")
+    Display.draw(win)
+    regress = Regression(win)
+    while True:
+        key = win.getMouse()
+        keyX = key.getX()
+        keyY = key.getY()
+        if keyX <= 30 and keyY <= 30:
+            Display.setText("""stopping. Click again
+to plot regressioin line""")
+            key = win.getMouse()
+            break
+        key.draw(win)
+        regress.addPoint(key)
+
+    m = regress.getSlope()
+    Xmean = regress.getXmean()
+    print
+    regress.drawLine(win,10,290)
+    Display.undraw
+    Display.setText(f"The regression line's equation is y = {m:.2f}(x + {Xmean:.2f})")
+    print("test")
+    isplay.draw(win)
+    Exittext.undraw
+    Exitangle.undraw
+    win.getMouse()
+    
+    
+
+main()
