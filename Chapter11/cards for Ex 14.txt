@@ -1,5 +1,0 @@
-hearts 10
-hearts Jack
-hearts Queen
-hearts King
-hearts Ace
