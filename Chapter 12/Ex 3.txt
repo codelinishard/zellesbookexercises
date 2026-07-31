@@ -1,0 +1,40 @@
+Alice Wong,Acme Corp,California,alice.wong@acmecorp.com
+Bob Smith,Tech Inc,New York,bob.smith@techinc.com
+Carol Lee,Data Co,Texas,carol.lee@dataco.com
+David Kim,Global Systems,Florida,david.kim@globalsystems.com
+Emma Davis,Nexus Ltd,Washington,emma.davis@nexusltd.com
+Frank Chen,Pinnacle Group,Illinois,frank.chen@pinnaclegroup.com
+Grace Liu,Vertex Solutions,Georgia,grace.liu@vertexsolutions.com
+Henry Park,Orion Tech,Ohio,henry.park@oriontech.com
+Iris Tang,Apex Partners,Arizona,iris.tang@apexpartners.com
+James Ng,Zenith Corp,Colorado,james.ng@zenithcorp.com
+Karen Zhao,Acme Corp,California,karen.zhao@acmecorp.com
+Leo Wu,Tech Inc,New York,leo.wu@techinc.com
+Mia Tan,Data Co,Texas,mia.tan@dataco.com
+Nathan Lim,Global Systems,Florida,nathan.lim@globalsystems.com
+Olivia Xu,Nexus Ltd,Washington,olivia.xu@nexusltd.com
+Peter Ho,Pinnacle Group,Illinois,peter.ho@pinnaclegroup.com
+Quinn Ma,Vertex Solutions,Georgia,quinn.ma@vertexsolutions.com
+Rachel Yu,Orion Tech,Ohio,rachel.yu@oriontech.com
+Sam Goh,Apex Partners,Arizona,sam.goh@apexpartners.com
+Tina Poh,Zenith Corp,Colorado,tina.poh@zenithcorp.com
+Uma Singh,Acme Corp,California,uma.singh@acmecorp.com
+Victor Raj,Tech Inc,New York,victor.raj@techinc.com
+Wendy Koh,Data Co,Texas,wendy.koh@dataco.com
+Xavier Teo,Global Systems,Florida,xavier.teo@globalsystems.com
+Yara Balan,Nexus Ltd,Washington,yara.balan@nexusltd.com
+Zack Ong,Pinnacle Group,Illinois,zack.ong@pinnaclegroup.com
+Amy Lam,Vertex Solutions,Georgia,amy.lam@vertexsolutions.com
+Bryan Chia,Orion Tech,Ohio,bryan.chia@oriontech.com
+Cathy Yeo,Apex Partners,Arizona,cathy.yeo@apexpartners.com
+Derek Chua,Zenith Corp,Colorado,derek.chua@zenithcorp.com
+Elaine Tay,Acme Corp,California,elaine.tay@acmecorp.com
+Felix Sim,Tech Inc,New York,felix.sim@techinc.com
+Gloria Ang,Data Co,Texas,gloria.ang@dataco.com
+Harry Yap,Global Systems,Florida,harry.yap@globalsystems.com
+Irene Low,Nexus Ltd,Washington,irene.low@nexusltd.com
+Jason Wee,Pinnacle Group,Illinois,jason.wee@pinnaclegroup.com
+Kelly Foo,Vertex Solutions,Georgia,kelly.foo@vertexsolutions.com
+Liam Neo,Orion Tech,Ohio,liam.neo@oriontech.com
+Mandy Soh,Apex Partners,Arizona,mandy.soh@apexpartners.com
+Nick Tan,Zenith Corp,Colorado,nick.tan@zenithcorp.com
