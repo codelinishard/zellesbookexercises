@@ -1,0 +1,19 @@
+#reading the print statements are terrible
+counter = 0
+def fib(n, depth=0):
+    indent = "   " * depth
+    print(f"{indent}computing fib({n})")
+    global counter
+    if n == 3:
+        counter += 1
+
+    if n < 3:
+        print(f"{indent}Leaving fib({n}) returning 1")
+        return 1
+    else:
+        output = fib(n-1, depth+1) + fib(n-2, depth+1)
+        print(f"{indent}Leaving fib({n}) returning {output}")
+        return output
+
+fib(4)
+print(f"fib(3) was called {counter} times")
